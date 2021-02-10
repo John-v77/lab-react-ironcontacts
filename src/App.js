@@ -6,6 +6,9 @@ import contacts from './contacts.json';
 
 function App(){
 
+  const [celebsArr, setCelebArr] = useState(contacts.splice(0,5))
+  const [remainingCeleb, setRemainingCeleb] = useState(contacts)
+
     const fiveMovies = contacts.slice(0,5)
     console.log(fiveMovies)
     <table>
@@ -15,6 +18,9 @@ function App(){
       <th>Popularity</th>
       <th>Action</th>
     </tr>
+
+
+
     const showFIve = () =>{
       return fiveMovies.map(eachContact => {
         return (<tr>
@@ -25,9 +31,17 @@ function App(){
       })
     }
 
+    const addRandom = () =>{
+      console.log('hello')
+      let randomIndex = Math.floor(Math.random()* remainingCeleb.length)
+      let newRandomEntry = remainingCeleb.splice(randomIndex, 1)
+      setCelebArr([...newRandomEntry])
+    }
+
   return(
     <div>
-      Hello
+    {showFIve}
+    <button onClick={addRandom}>Add Random Actor</button>
     </div>
   )
 }
